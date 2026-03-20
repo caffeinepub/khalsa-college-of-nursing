@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Bricolage Grotesque — display headings */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Plus Jakarta Sans — body text */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans-Variable.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Navy Blue — deep institutional primary */
+    --navy-900: 0.18 0.065 255;
+    --navy-800: 0.22 0.072 255;
+    --navy-700: 0.28 0.075 255;
+    --navy-600: 0.35 0.07 255;
+    --navy-100: 0.93 0.018 255;
+    --navy-50: 0.97 0.008 255;
+
+    /* Gold — prestigious accent */
+    --gold-500: 0.72 0.16 76;
+    --gold-400: 0.80 0.14 76;
+    --gold-300: 0.87 0.11 76;
+    --gold-100: 0.95 0.04 76;
+
+    /* Semantic tokens — light mode */
+    --background: 0.98 0.003 250;
+    --foreground: 0.18 0.065 255;
+    --card: 1 0 0;
+    --card-foreground: 0.18 0.065 255;
+    --popover: 1 0 0;
+    --popover-foreground: 0.18 0.065 255;
+    --primary: 0.18 0.065 255;
+    --primary-foreground: 0.98 0.003 250;
+    --secondary: 0.72 0.16 76;
+    --secondary-foreground: 0.18 0.065 255;
+    --muted: 0.95 0.01 255;
+    --muted-foreground: 0.45 0.04 255;
+    --accent: 0.72 0.16 76;
+    --accent-foreground: 0.18 0.065 255;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.88 0.025 255;
+    --input: 0.88 0.025 255;
+    --ring: 0.72 0.16 76;
+    --chart-1: 0.72 0.16 76;
+    --chart-2: 0.35 0.07 255;
+    --chart-3: 0.55 0.12 180;
+    --chart-4: 0.65 0.18 45;
+    --chart-5: 0.75 0.14 120;
+    --sidebar: 0.18 0.065 255;
+    --sidebar-foreground: 0.98 0.003 250;
+    --sidebar-primary: 0.72 0.16 76;
+    --sidebar-primary-foreground: 0.18 0.065 255;
+    --sidebar-accent: 0.28 0.075 255;
+    --sidebar-accent-foreground: 0.98 0.003 250;
+    --sidebar-border: 0.28 0.075 255;
+    --sidebar-ring: 0.72 0.16 76;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  }
+  
+  .text-gold {
+    color: oklch(var(--gold-500));
+  }
+  
+  .bg-navy {
+    background-color: oklch(var(--navy-900));
+  }
+  
+  .bg-navy-800 {
+    background-color: oklch(var(--navy-800));
+  }
+  
+  .bg-gold {
+    background-color: oklch(var(--gold-500));
+  }
+  
+  .border-gold {
+    border-color: oklch(var(--gold-500));
+  }
+
+  .section-heading {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+    color: oklch(var(--navy-900));
+  }
+
+  .section-subheading {
+    @apply text-lg text-muted-foreground max-w-2xl;
+  }
+
+  .gradient-gold {
+    background: linear-gradient(135deg, oklch(var(--gold-500)), oklch(var(--gold-300)));
+  }
+
+  .gradient-navy {
+    background: linear-gradient(135deg, oklch(var(--navy-900)), oklch(var(--navy-700)));
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  /* Ticker animation */
+  @keyframes ticker {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .animate-ticker {
+    animation: ticker 30s linear infinite;
+  }
+
+  /* Scroll reveal base */
+  .reveal {
+    @apply opacity-0 translate-y-8;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    @apply opacity-100 translate-y-0;
+  }
+}
